@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<form class="area" id="log-area" method="post" action="/login" novalidate>
+    {% csrf_token %}
+    <div class="header">Log In</div>
+    <div class="error" id="title-err">
+        {{ form.non_field_errors }}
+    </div>
+    {% for field in form %}
+    <div class="">
+        <span>{{ field.label }}</span>
+        {{ field }}
+    </div>
+    <div class="error">
+        <ul class="errorlist"></ul>
+        {{field.errors}}
+    </div>
+    {% endfor %}
+    <input type="text" name="continue" value="{{ continue }}" hidden/>
+    <div class="sub">
+        <span></span>
+        <button type="submit" class="ask">Log in!</button>
+    </div>
+    <div class="create">
+        <span></span>
+        <div><a href="{% url 'signup' %}">create new account</a></div>
+    </div>
+</form>
+
+{% endblock %}

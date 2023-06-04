@@ -1,0 +1,177 @@
+.left-side {
+    flex-basis: 8%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 30px;
+    margin-left: 1.5vw;
+    padding-top: 10px;
+    justify-content: flex-start;
+}
+
+.right-side {
+    flex-basis: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.rate {
+    display: flex;
+    width: 80px;
+    flex-direction: row;
+}
+
+.rate > button, .rate > button:hover, .rate > button:active, .rate > button:focus  {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(209, 203, 203);
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    border-radius: 0%;
+    padding-top: 5px;
+    overflow: hidden;
+    transition: none;
+    color: inherit;
+}
+
+
+.rate > button:hover > div {
+    color: #2dbeff;
+}
+
+.rate-num {
+    flex-basis: 33%;
+    text-align: center;
+    padding-top: 2px;
+}
+
+#thumb_up {
+    font-size: 19px;
+}
+
+
+#thumb_down {
+    font-size: 19px;
+}
+
+.like {
+    flex-basis: 33%;
+}
+
+.dislike {
+    flex-basis: 34%;
+}
+
+.right-bot {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.right-bot > a, .right-bot > div {
+    white-space: nowrap;
+    margin-right: 10px;
+}
+
+.right-bot > a:not(a:first-child) {
+    color: black;
+}
+
+.right-bot > a:not(a:first-child):hover {
+    color: red;
+}
+
+.answers-count {
+    color: black;
+    flex-basis: 20%;
+    
+}
+
+.answers-count:hover {
+    color: red;
+}
+
+.main-question {
+    display: flex;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 20px;
+    height: auto;
+    justify-content: center;
+    border-bottom: 2px solid #000;
+}
+
+
+.main-question-title {
+    font-size: 40px;
+    align-self: flex-start;
+    margin: 40px 20px 20px 40px;
+
+}
+
+.main-question-text {
+    margin-bottom: 20px;
+}
+
+.main-question > .left-side {
+    justify-content: start;
+}
+
+#main-rate {
+    width: 100px;
+}
+
+#main-rate > button {
+    background-color: #fff;
+}
+
+#main-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.answer {
+    display: flex;
+    margin-bottom: 20px;
+    border-radius: 40px;
+    padding: 20px;
+    height: auto;
+    justify-content: center;
+    background: rgb(209, 203, 203);
+}
+
+.answer .right-side {
+    justify-content: space-between;
+}
+
+.new-answer {
+    /*border-top: 2px solid #000;*/
+    margin-top: 25px;
+    padding-top: 20px;
+}
+
+.form-check-input:checked {
+    background-color: #2dbeff;
+    box-shadow: none;
+}
+
+.form-check-input:focus {
+    box-shadow: none;
+}
+
+.new-answer > textarea, .new-answer > textarea:focus {
+    width: 100%;
+    outline: none;
+    resize: none;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 2px 20px 2px 20px;
+}
+
+.new-answer > textarea::-webkit-scrollbar {
+    width: 0;
+  }

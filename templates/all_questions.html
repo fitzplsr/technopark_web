@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+
+
+{% load static %}
+
+{% block q_type %}
+<div class="topic-flex">
+  <div class="topic">All questions</div>
+  <div class="hot-questions"><a href="{% url 'hot_questions' %}">Hot🔥</a></div>
+  <div class="hot-questions"><a href="{% url 'new_questions' %}">New</a></div>
+  <div class="hot-questions"><a href="{% url 'best_questions' %}">Best</a></div>
+</div>
+{% endblock %}

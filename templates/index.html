@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+{% block q_type %}
+
+{% endblock %}
+
+
+{% for question in data %}
+  {% include 'question_item.html' %}
+{% endfor %}
+
+
+{% include 'paginator.html' %}
+
+{% endblock %}
+

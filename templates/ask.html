@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<form class="area was-validated" id="ask-area" method="post" novalidate>
+    {% csrf_token %}
+    <div class="header">New Question</div>
+    <div class="error" id="title-err">
+        {{ form.non_field_errors }}
+    </div>
+    {% for field in form %}
+    <div class="">
+        <span>{{ field.label }}</span>
+        {{ field }}
+    </div>
+    <div class="error">
+        <ul class="errorlist"></ul>
+        {{field.errors}}
+    </div>
+    {% endfor %}
+    <button type="submit" class="ask">ASK!</button>
+</form>
+
+{% endblock %}

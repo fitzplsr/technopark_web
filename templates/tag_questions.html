@@ -1,0 +1,11 @@
+{% extends "index.html" %}
+
+
+{% load static %}
+
+{% block q_type %}
+<div class="topic-flex">
+  <div class="topic">Questions for tag: </div>
+  <a class="topic-tag" href="{% url 'tag_questions' tag=tag %}">{{tag}}</a>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<form class="area" id="settings-area" method="post" enctype="multipart/form-data" novalidate>
+    <div class="header">Settings: {{request.user.username}}</div>
+    {% csrf_token %}
+
+    <div class="error" id="title-err">
+        {{ form.non_field_errors }}
+    </div>
+    {% for field in form %}
+    <div class="">
+        <span>{{ field.label }}</span>
+        {{ field }}
+    </div>
+    <div class="error">
+        <ul class="errorlist"></ul>
+        {{field.errors}}
+    </div>
+    {% endfor %}
+    <div class="upload-av">
+        <span></span>
+        <div class="valid-input">
+            <div class="settings-img"><img src="{{ request.user.profile.avatar.url }}" alt="avatar"></div>
+        </div>
+    </div>
+    <div class="register">
+        <span></span>
+        <button type="submit" class="ask">Save!</button>
+    </div>
+</form>
+
+{% endblock %}

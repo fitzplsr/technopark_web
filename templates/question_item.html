@@ -1,0 +1,33 @@
+{% load static %}
+
+<div class="question">
+      <div class="left-side">
+        <div class="avatar">
+          <img src="{{ question.image.url }}" alt="">
+        </div>
+        <div class="rate">
+          <div class="rate-num question_{{question.id}}">{{ question.like }}</div>
+          <button class="like" type="button" data-id="{{ question.id }}"  data-type="question" data-vote="like">
+            <div class="material-icons" id="thumb_up">thumb_up</div>
+          </button>
+          <button class="like" data-id="{{ question.id }}"  data-type="question" data-vote="dislike">
+            <div class="material-icons" id="thumb_down">thumb_down</div>
+          </button>
+        </div>
+      </div>
+      <div class="right-side">
+        <a class="question-title" href="{% url 'question' question_id=question.id %}">{{question.title}}</a>
+        <div class="question-text">
+          {{question.text}}
+         </div>
+        <div class="right-bot">
+          <a class="answers-count" href="{% url 'question' question_id=question.id %}">answers ({{question.answer_number}})</a>
+          <div class="tag-start">Tags:</div>
+
+          {% for tag in question.tags %}
+            <a href="{% url 'tag_questions' tag=tag %}" class="tag">{{ tag }}</a>
+          {% endfor %}
+
+        </div>
+      </div>
+</div>

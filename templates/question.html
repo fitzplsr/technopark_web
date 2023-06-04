@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="main-question-title">{{ question.title }}</div>
+<div class="main-question">
+
+  <div class="left-side">
+      <div class="avatar" id="main-avatar">
+        <img src="{{ question.image.url }}" alt="">
+      </div>
+
+      <div class="rate" id="main-rate">
+        <div class="rate-num question_{{question.id}}">{{ question.like }}</div>
+        <button class="like" type="button" data-id="{{ question.id }}"  data-type="question" data-vote="like">
+          <div class="material-icons" id="thumb_up">thumb_up</div>
+        </button>
+        <button class="like"  type="button" data-id="{{ question.id }}"  data-type="question" data-vote="dislike">
+          <div class="material-icons" id="thumb_down">thumb_down</div>
+        </button>
+      </div>
+    </div>
+    <div class="right-side">
+
+      <div class="main-question-text">
+        {{ question.text }}
+      </div>
+      <div class="right-bot">
+        <div class="tag-start">Tags:</div>
+        {% for tag in question.tags %}
+            <a href="{% url 'tag_questions' tag=tag %}" class="tag">{{ tag }}</a>
+        {% endfor %}
+      </div>
+    </div>
+</div>
+
+{% for answer in data %}
+  {% include 'answer_item.html' %}
+{% endfor %}
+
+{% if request.user.is_authenticated %}
+<form class="new-answer" method="post" novalidate>
+  {% csrf_token %}
+    {% for field in form %}
+        {{ field }}
+    {% endfor %}
+    <div class="register">
+        <span></span>
+        <button type="submit" class="ask">Answer!</button>
+    </div>
+</form>
+{% endif %}
+
+{% include 'paginator.html' %}
+
+{% endblock %}

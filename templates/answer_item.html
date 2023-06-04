@@ -1,0 +1,45 @@
+{% load static %}
+
+<div class="answer">
+  <div class="left-side">
+      <div class="avatar">
+        <img src="{{ answer.image.url }}" alt="">
+      </div>
+      <div class="rate">
+        <div class="rate-num answer_{{answer.id}}">{{ answer.like }}</div>
+        <button class="like" type="button" data-id="{{ answer.id }}"  data-type="answer" data-vote="like">
+          <div class="material-icons" id="thumb_up">thumb_up</div>
+        </button>
+        <button class="like" type="button" data-id="{{ answer.id }}"  data-type="answer" data-vote="dislike">
+          <div class="material-icons" id="thumb_down">thumb_down</div>
+        </button>
+      </div>
+    </div>
+    <div class="right-side">
+      <div class="answer-text">
+        {{ answer.text }}
+      </div>
+      {% if author %}
+      <div class="right-bot">
+          <div class="form-check">
+              {% if answer.correct %}
+              <input class="form-check-input" data-id="{{ answer.id }}" type="checkbox" value="" id="flexCheckDefault" checked>
+              {% else %}
+              <input class="form-check-input" data-id="{{ answer.id }}" type="checkbox" value="" id="flexCheckDefault">
+              {% endif %}
+              <label class="form-check-label" for="flexCheckDefault">
+                  Correct!
+              </label>
+          </div>
+      </div>
+      {% else %}
+      <div class="right-bot">
+          {% if answer.correct %}
+          <label class="form-check-label" for="flexCheckDefault">
+              Correct!
+          </label>
+          {% endif %}
+      </div>
+      {% endif %}
+    </div>
+</div>

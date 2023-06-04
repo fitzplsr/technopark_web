@@ -1,0 +1,87 @@
+<!doctype html>
+
+{% load static %}
+
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+      <link rel="stylesheet" href="{% static 'css/base.css' %}">
+      <link rel="stylesheet" href="{% static 'css/index.css' %}">
+      <link rel="stylesheet" href="{% static 'css/question.css' %}">
+      <link rel="stylesheet" href="{% static 'css/area.css' %}">
+
+      <title>SegFault</title>
+  </head>
+
+  <body>
+  <div class="container-top fixed-top">
+      <a class="icon" href="{% url 'index' %}?page=1">SegFault</a>
+      <form class="search">
+        <input class="form-control me-2" id="search-q" type="search" placeholder="Search" aria-label="Search">
+      </form>
+      {% if request.user.is_authenticated %}
+      <a href="{% url 'ask' %}" class="ask">ASK!</a>
+      <div class="user">
+        <div class="avatar" id="top-ava">
+          <img src="{{ request.user.profile.avatar.url }}" alt="">
+        </div>
+        <div class="actions">
+          <div class="name">{{ user.profile.nickname }}</div>
+          <div class="other">
+            <a class="settings" href="{% url 'settings' %}">settings</a>
+            <form action="/logout" method="post">
+                {% csrf_token %}
+                <a class="log-out"><input type="submit" value="log out"></a>
+                <input type="text" name="continue" value="{{ request.path}}" hidden/>
+            </form>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <div class="user">
+        <a class="reg" href="{% url 'signup' %}">register</a>
+        <a class="log-in" href="{% url 'login' %}">log in</a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+    <div class="content-area">
+        <div class="main-area">
+          {% block content %}
+          {% endblock %}
+        </div>
+        <div class="sub-area">
+          <div class="popular-tags">
+            <h2>Popular Tags</h2>
+            <div class="ptags">
+              {% for tag in ptags %}
+                <a href="{% url 'tag_questions' tag=tag %}" class="ptag">{{ tag }}</a>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="best-members">
+            <h2>Best Members</h2>
+            {% for mem in bmembers %}
+                <a href="#" class="bmem">{{ mem }}</a>
+            {% endfor %}
+          </div>
+        </div>
+    </div>
+    <div class="container">
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+          <span class="mb-3 mb-md-0 text-body-secondary">© 2023 SegFault</span>
+        </div>
+      </footer>
+    </div>
+  </body>
+  <script>
+    var csrf_token = '{{ csrf_token }}'
+  </script>
+  <script src="{% static 'jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'js/vote.js' %}"></script>
+  <script src="{% static 'js/correct.js' %}"></script>
+</html>
